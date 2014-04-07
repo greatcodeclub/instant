@@ -4,6 +4,6 @@ test:
 	${BIN}/mocha --reporter spec
 
 watch:
-	${BIN}/mocha --watch --reporter spec
+	${BIN}/mocha --watch --reporter min
 
 .PHONY: test watch
