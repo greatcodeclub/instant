@@ -8,17 +8,17 @@ describe('Router', function() {
 
   it('stores routes', function () {
     var callback = function() {}
-    this.router.route('get', '/', callback)
-    this.router.route('post', '/login', callback)
+    this.router.route('GET', '/', callback)
+    this.router.route('POST', '/login', callback)
     
     assert.deepEqual(this.router.routes, {
-      get: [
+      GET: [
         {
           regexp: new RegExp("^/$", "i"),
           callback: callback          
         }
       ],
-      post: [
+      POST: [
         {
           regexp: new RegExp("^/login$", "i"),
           callback: callback          
@@ -30,7 +30,7 @@ describe('Router', function() {
   it('handle GET', function() {
     var called
     
-    this.router.route('get', '/hi', function() { called = true })
+    this.router.route('GET', '/hi', function() { called = true })
     
     this.router.handle({ method: 'GET', url: '/hi' }, {})
     
@@ -40,8 +40,8 @@ describe('Router', function() {
   it('handle POST', function() {
     var getCalled, postCalled
 
-    this.router.route('get', '/',  function() { getCalled = true })
-    this.router.route('post', '/', function() { postCalled = true })
+    this.router.route('GET', '/',  function() { getCalled = true })
+    this.router.route('POST', '/', function() { postCalled = true })
     
     this.router.handle({ method: 'POST', url: '/' }, {})
 
