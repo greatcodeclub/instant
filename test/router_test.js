@@ -6,12 +6,33 @@ describe('Router', function() {
     this.router = new Router()
   })
 
+  it('stores routes', function () {
+    var callback = function() {}
+    this.router.route('get', '/', callback)
+    this.router.route('post', '/login', callback)
+    
+    assert.deepEqual(this.router.routes, {
+      get: [
+        {
+          regexp: new RegExp("^/$", "i"),
+          callback: callback          
+        }
+      ],
+      post: [
+        {
+          regexp: new RegExp("^/login$", "i"),
+          callback: callback          
+        }
+      ]
+    })
+  })
+
   it('handle GET', function() {
     var called
     
-    this.router.route('get', '/', function() { called = true })
+    this.router.route('get', '/hi', function() { called = true })
     
-    this.router.handle({ method: 'GET', url: '/' }, {})
+    this.router.handle({ method: 'GET', url: '/hi' }, {})
     
     assert(called, "Should call get route")
   })
