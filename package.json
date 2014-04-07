@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/codedinc/instant.git"
+    "url": "git://github.com/greatcodeclub/instant.git"
   },
   "keywords": [
     "framework",
@@ -15,11 +15,13 @@
   ],
   "author": "Marc-Andre Cournoyer",
   "bugs": {
-    "url": "https://github.com/codedinc/instant/issues"
+    "url": "https://github.com/greatcodeclub/instant/issues"
   },
   "dependencies": {
+    "underscore": "1.x"
+  },
+  "devDependencies": {
     "mocha": "1.x",
-    "underscore": "1.x",
     "consolidate": "0.x",
     "jade": "1.x",
     "morgan": "*",
