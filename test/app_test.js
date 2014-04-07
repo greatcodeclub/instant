@@ -1,5 +1,6 @@
 var assert = require('assert'),
-    App = require('../lib/app').App
+    App = require('../lib/app').App,
+    Response = require('../lib/response').Response
 
 describe('App', function() {
   beforeEach(function() {
@@ -14,6 +15,16 @@ describe('App', function() {
     this.app.handle({ method: 'GET', url: '/' }, {})
     
     assert(called)
+  })
+  
+  it('res inherit from Response', function() {
+    var res
+    
+    this.app.get('/', function(_req, _res) { res = _res })
+    
+    this.app.handle({ method: 'GET', url: '/' }, {})
+    
+    assert.equal(res.__proto__, Response.prototype)
   })
 
   it('call middlewares', function() {
