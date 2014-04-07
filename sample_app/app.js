@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
 })
 
 app.get('/view', function(req, res) {
-  res.render('index', { content: 'hi' })
+  res.render('index', { title: 'Instant' })
 })
 
 app.listen(3000)
