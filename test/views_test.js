@@ -3,26 +3,25 @@ var assert = require('assert'),
     Response = require('../lib/response').Response
 
 describe('Views', function() {
-  beforeEach(function () {
+  beforeEach(function() {
     this.app = new App()
+    this.app.set('views', __dirname + '/views')
+    this.app.set('view engine', 'jade')
+
     this.res = new Response()
     this.res.app = this.app
+  })
 
-    this.app.engine('jade', function(path, locals, callback) {
-      callback(null, 'ok')
+  it('render from app', function() {
+    this.app.render('index', { content: 'hi' }, function(html) {
+      assert.equal(html, '<p>hi</p>')
     })
   })
 
-  it('render from app', function () {
-    this.app.render('file', {}, function(html) {
-      assert.equal(html, 'ok')
-    })
-  })
-
-  it('render from response', function () {
+  it('render from response', function() {
     var called
     this.res.send = function(html) { called = html }
-    this.res.render('file')
-    assert.equal(called, 'ok')
+    this.res.render('index', { content: 'hi' })
+    assert.equal(called, '<p>hi</p>')
   })
 })

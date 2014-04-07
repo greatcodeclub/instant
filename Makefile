@@ -6,4 +6,7 @@ test:
 watch:
 	${BIN}/mocha --watch --reporter min
 
-.PHONY: test watch
+watch-app:
+	${BIN}/nodemon sample_app/app.js
+
+.PHONY: test watch watch-app

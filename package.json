@@ -25,6 +25,7 @@
     "consolidate": "0.x",
     "jade": "1.x",
     "morgan": "*",
-    "serve-static": "*"
+    "serve-static": "*",
+    "nodemon": "1.x"
   }
 }

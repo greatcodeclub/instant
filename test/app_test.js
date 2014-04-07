@@ -2,11 +2,11 @@ var assert = require('assert'),
     App = require('../lib/app').App
 
 describe('App', function() {
-  beforeEach(function () {
+  beforeEach(function() {
     this.app = new App()
   })
 
-  it('route GET', function () {
+  it('route GET', function() {
     var called
     
     this.app.get('/', function() { called = true })
@@ -16,7 +16,7 @@ describe('App', function() {
     assert(called)
   })
 
-  it('call middlewares', function () {
+  it('call middlewares', function() {
     var called
     
     this.app.use(function(req, res, next) { next() })
