@@ -1,20 +1,17 @@
 var instant = require('../lib/instant'),
     logger = require('morgan'),
-    serveStatic = require('serve-static'),
-    cons = require('consolidate')
+    serveStatic = require('serve-static')
 
 var app = instant()
 
-app.engine('jade', cons.jade)
+app.set('views', __dirname + '/views')
+app.set('view engine', 'jade')
 
 app.use(logger())
-app.use(serveStatic('public'))
+app.use(serveStatic(__dirname + '/public'))
 
 app.get('/', function(req, res) {
-  res.send("It's alive!")
-})
-
-app.get('/view', function(req, res) {
+  // res.send("It's alive!")
   res.render('index', { title: 'Instant' })
 })
 
