@@ -6,7 +6,7 @@ describe('App', function() {
     this.app = new App()
   })
 
-  it('route GET', function() {
+  it('handle GET', function() {
     var called
     
     this.app.get('/', function() { called = true })
@@ -25,5 +25,24 @@ describe('App', function() {
     this.app.handle({ method: 'GET', url: '/' }, {})
     
     assert(called)
+  })
+
+  it('error is caught', function () {
+    var err = new Error('Ouch')
+    err.status = 500
+
+    this.app.get('/', function() { throw err })
+
+    var status, body
+    this.app.handle({ method: 'GET', url: '/' },
+                    { // Response object (res)
+                      send: function(_status, _body) {
+                        status = _status
+                        body = _body
+                      }
+                    })
+
+    assert.equal(status, err.status)
+    assert.equal(body, err.message)
   })
 })

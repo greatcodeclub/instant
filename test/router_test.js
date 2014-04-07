@@ -1,5 +1,4 @@
 var assert = require('assert'),
-    sinon = require('sinon'),
     Router = require('../lib/router').Router
 
 describe('Router', function() {
@@ -8,35 +7,34 @@ describe('Router', function() {
   })
 
   it('handle GET', function() {
-    var callback = sinon.spy()
+    var called
     
-    this.router.route('get', '/', callback)
+    this.router.route('get', '/', function() { called = true })
     
-    this.router.handle({ method: 'GET', url: '/' })
+    this.router.handle({ method: 'GET', url: '/' }, {})
     
-    assert(callback.called)
+    assert(called, "Should call get route")
   })
   
   it('handle POST', function() {
-    var getCallback = sinon.spy(),
-        postCallback = sinon.spy()
+    var getCalled, postCalled
 
-    this.router.route('get', '/', getCallback)
-    this.router.route('post', '/', postCallback)
+    this.router.route('get', '/',  function() { getCalled = true })
+    this.router.route('post', '/', function() { postCalled = true })
     
-    this.router.handle({ method: 'POST', url: '/' })
+    this.router.handle({ method: 'POST', url: '/' }, {})
 
-    assert(!getCallback.called)
-    assert(postCallback.called)
+    assert(!getCalled, "Shouldn't call post route")
+    assert(postCalled, "Should call post route")
   })
   
   it('handle not found', function() {
     var self = this
 
     assert.throws(function() {
-      self.router.handle({ method: 'GET', url: '/' })
+      self.router.handle({ method: 'GET', url: '/' }, {})
     }, function(err) {
       return err.status == 404
-    })
+    }, "Should throw 404 error")
   })
 })

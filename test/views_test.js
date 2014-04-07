@@ -1,5 +1,5 @@
 var assert = require('assert'),
-    App = require('../lib/app').App,
+    App = require('../lib/app').App
     Response = require('../lib/response').Response
 
 describe('Views', function() {
@@ -7,9 +7,6 @@ describe('Views', function() {
     this.app = new App()
     this.app.set('views', __dirname + '/views')
     this.app.set('view engine', 'jade')
-
-    this.res = new Response()
-    this.res.app = this.app
   })
 
   it('render from app', function() {
@@ -19,9 +16,11 @@ describe('Views', function() {
   })
 
   it('render from response', function() {
-    var called
-    this.res.send = function(html) { called = html }
-    this.res.render('index', { content: 'hi' })
-    assert.equal(called, '<p>hi</p>')
+    var html, res = new Response()
+    res.app = this.app
+
+    res.send = function(_html) { html = _html }
+    res.render('index', { content: 'hi' })
+    assert.equal(html, '<p>hi</p>')
   })
 })

@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "mocha": "1.x",
-    "sinon": "1.x",
     "consolidate": "0.x",
     "jade": "1.x",
     "morgan": "*",
