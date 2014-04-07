@@ -1,6 +1,6 @@
 BIN = `npm bin`
 
-test: lib/parser.js
+test:
 	${BIN}/mocha --reporter spec
 
 watch:
