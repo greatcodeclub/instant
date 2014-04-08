@@ -9,13 +9,17 @@ xdescribe('Views', function() {
     this.app.set('view engine', 'jade')
   })
 
-  it('render from app', function() {
+  it('has settings', function() {
+    assert.equal(this.app.settings['view engine'], 'jade')
+  })
+
+  xit('render from app', function() {
     this.app.render('index', { content: 'hi' }, function(html) {
       assert.equal(html, '<p>hi</p>')
     })
   })
 
-  it('render from response', function() {
+  xit('render from response', function() {
     var html, res = new Response()
     res.app = this.app
 
