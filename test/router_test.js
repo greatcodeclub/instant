@@ -1,7 +1,7 @@
 var assert = require('assert'),
     Router = require('../lib/router').Router
 
-xdescribe('Router', function() {
+describe('Router', function() {
   beforeEach(function() {
     this.router = new Router()
   })
@@ -27,7 +27,7 @@ xdescribe('Router', function() {
     })
   })
 
-  xit('handle GET', function() {
+  it('handle GET', function() {
     var called
     
     this.router.route('GET', '/hi', function() { called = true })
@@ -37,7 +37,7 @@ xdescribe('Router', function() {
     assert(called, "Should call get route")
   })
   
-  xit('handle POST', function() {
+  it('handle POST', function() {
     var getCalled, postCalled
 
     this.router.route('GET', '/',  function() { getCalled = true })
@@ -49,7 +49,7 @@ xdescribe('Router', function() {
     assert(postCalled, "Should call post route")
   })
   
-  xit('handle not found', function() {
+  it('handle not found', function() {
     var self = this
 
     assert.throws(function() {

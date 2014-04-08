@@ -2,7 +2,7 @@ var assert = require('assert'),
     App = require('../lib/app').App,
     Response = require('../lib/response').Response
 
-xdescribe('App', function() {
+describe('App', function() {
   beforeEach(function() {
     this.app = new App()
   })
@@ -17,7 +17,7 @@ xdescribe('App', function() {
     assert(called)
   })
 
-  xit('res has send method', function() {
+  it('res has send method', function() {
     var res
     
     this.app.get('/', function(_req, _res) { res = _res })
@@ -27,7 +27,7 @@ xdescribe('App', function() {
     assert(res.send)
   })
 
-  xit('error is caught', function () {
+  it('error is caught', function () {
     var err = new Error('Ouch')
     err.status = 500
 
