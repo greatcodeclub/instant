@@ -16,7 +16,7 @@ xdescribe('App', function() {
     
     assert(called)
   })
-  
+
   xit('res inherit from Response', function() {
     var res
     
@@ -27,18 +27,7 @@ xdescribe('App', function() {
     assert.equal(res.__proto__, Response.prototype)
   })
 
-  xit('call middlewares', function() {
-    var called
-    
-    this.app.use(function(req, res, next) { next() })
-    this.app.use(function() { called = true })
-
-    this.app.handle({ method: 'GET', url: '/' }, {})
-    
-    assert(called)
-  })
-
-  it('error is caught', function () {
+  xit('error is caught', function () {
     var err = new Error('Ouch')
     err.status = 500
 
@@ -55,5 +44,16 @@ xdescribe('App', function() {
 
     assert.equal(status, err.status)
     assert.equal(body, err.message)
+  })
+
+  xit('call middlewares', function() {
+    var called
+    
+    this.app.use(function(req, res, next) { next() })
+    this.app.use(function() { called = true })
+
+    this.app.handle({ method: 'GET', url: '/' }, {})
+    
+    assert(called)
   })
 })
