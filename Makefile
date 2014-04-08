@@ -4,7 +4,7 @@ test:
 	${BIN}/mocha --reporter spec
 
 watch:
-	${BIN}/mocha --watch --reporter min
+	${BIN}/mocha --watch --reporter spec
 
 watch-app:
 	${BIN}/nodemon sample_app/app.js
