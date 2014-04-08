@@ -2,7 +2,7 @@ var assert = require('assert'),
     App = require('../lib/app').App,
     Response = require('../lib/response').Response
 
-describe('App', function() {
+xdescribe('App', function() {
   beforeEach(function() {
     this.app = new App()
   })
@@ -17,7 +17,7 @@ describe('App', function() {
     assert(called)
   })
   
-  it('res inherit from Response', function() {
+  xit('res inherit from Response', function() {
     var res
     
     this.app.get('/', function(_req, _res) { res = _res })
@@ -27,7 +27,7 @@ describe('App', function() {
     assert.equal(res.__proto__, Response.prototype)
   })
 
-  it('call middlewares', function() {
+  xit('call middlewares', function() {
     var called
     
     this.app.use(function(req, res, next) { next() })

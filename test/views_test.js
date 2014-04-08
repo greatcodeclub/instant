@@ -2,7 +2,7 @@ var assert = require('assert'),
     App = require('../lib/app').App
     Response = require('../lib/response').Response
 
-describe('Views', function() {
+xdescribe('Views', function() {
   beforeEach(function() {
     this.app = new App()
     this.app.set('views', __dirname + '/views')
