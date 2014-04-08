@@ -17,14 +17,14 @@ xdescribe('App', function() {
     assert(called)
   })
 
-  xit('res inherit from Response', function() {
+  xit('res has send method', function() {
     var res
     
     this.app.get('/', function(_req, _res) { res = _res })
     
     this.app.handle({ method: 'GET', url: '/' }, {})
     
-    assert.equal(res.__proto__, Response.prototype)
+    assert(res.send)
   })
 
   xit('error is caught', function () {
