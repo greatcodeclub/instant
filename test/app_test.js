@@ -17,14 +17,14 @@ describe('App', function() {
     assert(called)
   })
   
-  it('res inherit from Response', function() {
+  it('res has send method', function() {
     var res
     
     this.app.get('/', function(_req, _res) { res = _res })
     
     this.app.handle({ method: 'GET', url: '/' }, {})
     
-    assert.equal(res.__proto__, Response.prototype)
+    assert(res.send)
   })
 
   it('call middlewares', function() {
