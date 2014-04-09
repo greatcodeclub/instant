@@ -17,6 +17,16 @@ describe('App', function() {
     assert(called)
   })
 
+  it('handle all methods', function() {
+    var called
+    
+    this.app.all('/', function() { called = true })
+    
+    this.app.handle({ method: 'DELETE', url: '/' }, {})
+    
+    assert(called)
+  })
+
   it('res has send method', function() {
     var res
     
