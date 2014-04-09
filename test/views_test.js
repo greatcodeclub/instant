@@ -14,7 +14,7 @@ describe('Views', function() {
   })
 
   it('render from app', function() {
-    this.app.render('index', { content: 'hi' }, function(html) {
+    this.app.render('index', { text: 'hi' }, function(html) {
       assert.equal(html, '<p>hi</p>')
     })
   })
@@ -24,7 +24,13 @@ describe('Views', function() {
     res.app = this.app
 
     res.send = function(_html) { html = _html }
-    res.render('index', { content: 'hi' })
+    res.render('index', { text: 'hi' })
     assert.equal(html, '<p>hi</p>')
+  })
+
+  it('render inside a layout', function () {
+    this.app.render('index', { text: 'hi', layout: 'layout' }, function(html) {
+      assert.equal(html, '<html><body><p>hi</p></body></html>')
+    })
   })
 })
