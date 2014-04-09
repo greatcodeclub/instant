@@ -56,4 +56,16 @@ describe('App', function() {
     
     assert(called)
   })
+  
+  it('router is a middleware', function() {
+    this.app.use(this.app.router)
+    this.app.get('/', function(req, res) { req.called = true })
+    
+    var routerWasCalledFirst
+    this.app.use(function(req, res, next) { routerWasCalledFirst = req.called })
+
+    this.app.handle({ method: 'GET', url: '/' }, {})
+    
+    assert(routerWasCalledFirst)
+  })
 })
