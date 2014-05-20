@@ -1,4 +1,4 @@
-BIN = `npm bin`
+BIN = "`npm bin`"
 
 test:
 	${BIN}/mocha --reporter spec
